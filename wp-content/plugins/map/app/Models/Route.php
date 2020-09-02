@@ -3,6 +3,8 @@
 
 namespace App\Model;
 
+use App\Helpers\Str;
+
 
 /**
  * Class Route
@@ -11,6 +13,10 @@ namespace App\Model;
  * @method static post( string $uri, $function )
  */
 class Route {
+
+    public static $args = [];
+    public static $index = 0;
+    public static $index_in = 0;
 
 	/**
 	 * @param $name
@@ -48,8 +54,8 @@ class Route {
 		}
 
 		if ( ! empty( $uri ) && ! empty( $function ) && is_callable( $function ) ) {
-			global $arr1234;
-			$arr1234        = [
+		    $uri = Str::start($uri, '/');
+			self::$args[self::$index]        = [
 				'uri'      => $uri,
 				'function' => $function,
 				'method'   => strtoupper( $method ),
@@ -58,16 +64,16 @@ class Route {
 
 
 
-			add_filter( 'custom_route', function ($prefix, $uri, $method, $function) { //'rest_api_init
-				global $arr1234;
-				register_rest_route( 'my-map' . $arr1234['prefix'], $arr1234['uri'], [
-						'methods'  => $arr1234['method'],
-						'callback' => $arr1234['function']
+            add_action( 'rest_api_init', function () {
+                $arr = self::$args[self::$index_in];
+				register_rest_route( 'my-map' . $arr['prefix'], $arr['uri'], [
+						'methods'  => $arr['method'],
+						'callback' => $arr['function']
 					]
 				);
-			}, 10, 4 );
-
-			apply_filters('custom_route');
+				self::$index_in++;
+			} );
+            self::$index++;
 
 			return true;
 		}
@@ -96,7 +102,7 @@ class Route {
 	 * @return mixed|string
 	 */
 	private static function defineFile( $path ) {
-		$arr = explode( '/', $path );
+		$arr = explode( DIRECTORY_SEPARATOR, $path );
 		if ( is_array( $arr ) ) {
 			$file = array_pop( $arr );
 			$arr  = explode( '.', $file );

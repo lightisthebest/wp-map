@@ -1,7 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ba03561-515b-4158-bc68-b5fcd3387063" name="Default Changelist" comment="" />
+    <list default="true" id="5ba03561-515b-4158-bc68-b5fcd3387063" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/map/app/Helpers/Str.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/map/app/Http/Controllers/TestController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/map/config/data/map.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/map/config/data/tabs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-config-sample.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/app/Helpers/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/app/Helpers/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/app/Http/Controllers/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/app/Http/Controllers/ApiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/app/Models/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/app/Models/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/assets/js/map-main.js" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/assets/js/map-main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/config/assets.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/config/assets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/resources/views/admin/map.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/resources/views/admin/map.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/resources/views/admin/tabs.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/resources/views/admin/tabs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/map/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/map/vendor/composer/autoload_static.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,15 +55,36 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1gxr7SGCeLikqgXRZHC2rUh5ksc" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../karabas" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -31,17 +97,57 @@
       <option name="presentableId" value="Default" />
       <updated>1599066916588</updated>
       <workItem from="1599066917692" duration="324000" />
+      <workItem from="1599067272839" duration="357000" />
+      <workItem from="1599067664922" duration="7302000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="638" y="354" key="#WordPress" timestamp="1599067147263">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="638" y="354" key="#WordPress/0.0.1600.860@0.0.1600.860" timestamp="1599067147263" />
+    <state x="580" y="184" key="FileChooserDialogImpl" timestamp="1599069331909">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="580" y="184" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1599069331909" />
+    <state x="520" y="152" key="NewPhpClassDialog" timestamp="1599070736671">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="520" y="152" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1599070736671" />
+    <state x="635" y="353" key="NewPhpFileDialog" timestamp="1599069704761">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="635" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1599069704761" />
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>C:\wamp64\www\wp-map</wordpressPath>

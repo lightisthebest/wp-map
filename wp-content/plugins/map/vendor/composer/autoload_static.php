@@ -47,8 +47,10 @@ class ComposerStaticInit529081d99387f7387d7c04d5529a73ad
     );
 
     public static $classMap = array (
+        'App\\Helpers\\Str' => __DIR__ . '/../..' . '/app/Helpers/Str.php',
         'App\\Http\\Controllers\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiController.php',
         'App\\Http\\Controllers\\MainController' => __DIR__ . '/../..' . '/app/Http/Controllers/MainController.php',
+        'App\\Http\\Controllers\\TestController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestController.php',
         'App\\Model\\AdminMenu' => __DIR__ . '/../..' . '/app/Models/AdminMenu.php',
         'App\\Model\\Page' => __DIR__ . '/../..' . '/app/Models/Page.php',
         'App\\Model\\Request' => __DIR__ . '/../..' . '/app/Models/Request.php',
