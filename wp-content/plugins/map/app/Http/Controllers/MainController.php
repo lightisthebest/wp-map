@@ -2,30 +2,32 @@
 
 namespace App\Http\Controllers;
 
-class MainController {
+class MainController
+{
 
-	public function __construct() {
-		$this->init();
-	}
+    public function __construct()
+    {
+        $this->init();
+    }
 
-	public function init() {
-		add_shortcode( 'map', [ $this, 'createMap' ] );
-		add_option( 'markers' );
-	}
+    public function init()
+    {
+        dd(view('map'));
+        add_shortcode('map', [$this, 'createMap']);
+        add_option('markers');
+    }
 
-	/**
-	 * @param $index
-	 *
-	 * @return string]
-	 */
-	public function createMap( $index ) {
-		$params  = shortcode_atts( array(
-			'index' => 0,
-		), $index );
-		$markers = get_option( 'markers' );
-		$markers = $markers[ $params['index'] ] ?? [];
-		$vue = '';
+    /**
+     *
+     * @return string]
+     */
+    public function createMap()
+    {
+        $map = json_decode(file_get_contents(app_path(MAP_INFO_FILE)), true);
+        $tabs = json_decode(file_get_contents(app_path(TABS_INFO_FILE)), true);
 
-		return view( 'map', compact( 'markers' ), ['map-vue' => $vue] );
-	}
+//        return 'this is my map';
+
+        return view('map', compact('map', 'tabs'));
+    }
 }

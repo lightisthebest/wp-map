@@ -68,7 +68,8 @@ class Route {
                 $arr = self::$args[self::$index_in];
 				register_rest_route( 'my-map' . $arr['prefix'], $arr['uri'], [
 						'methods'  => $arr['method'],
-						'callback' => $arr['function']
+						'callback' => $arr['function'],
+                        'permission_callback' => '__return_true'
 					]
 				);
 				self::$index_in++;

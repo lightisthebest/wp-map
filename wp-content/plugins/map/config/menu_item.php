@@ -4,26 +4,25 @@
 use App\Model\AdminMenu;
 use App\Model\Page;
 
-global $page;
-$page = new Page();
+global $mapPage;
+$mapPage = new Page();
 
 if ( is_admin() ) {
 	add_action( 'admin_menu', function () {
-		global $page;
+		global $mapPage;
 		$menu = new AdminMenu(
 			'Карта Google',
 			'Карта Google',
 			'administrator',
 			'google-map',
-			[ $page, 'emptyPage' ],
+			[ $mapPage, 'emptyPage' ],
 			'',
 			'55'
 		);
 
-		$menu->addSubmenu('Карта', 'map-map', [ $page, 'map' ])
-		->addSubmenu('Вкладки', 'map-tabs', [$page, 'tabs'])
+		$menu->addSubmenu('Карта', 'map-map', [ $mapPage, 'map' ])
+		->addSubmenu('Вкладки', 'map-tabs', [$mapPage, 'tabs'])
 		->removeMainSubmenu();
 	} );
 }
-
 // End register menu items

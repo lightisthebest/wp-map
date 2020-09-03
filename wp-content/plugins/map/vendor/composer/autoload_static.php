@@ -11,6 +11,7 @@ class ComposerStaticInit529081d99387f7387d7c04d5529a73ad
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '6fe2ccb2918708768ccab6a48c647b8b' => __DIR__ . '/../..' . '/app/Helpers/functions.php',
+        '3cca0bff1526629c441eb2af029a6e5c' => __DIR__ . '/../..' . '/app/Helpers/constants.php',
         '2660e4095a14b26763cfd58024acce19' => __DIR__ . '/../..' . '/routes/api.php',
     );
 
