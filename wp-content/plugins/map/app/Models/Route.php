@@ -103,10 +103,10 @@ class Route {
 	 */
 	private static function defineFile( $path ) {
 		$arr = explode( DIRECTORY_SEPARATOR, $path );
-		if ( is_array( $arr ) ) {
+		if ( !empty( $arr ) ) {
 			$file = array_pop( $arr );
 			$arr  = explode( '.', $file );
-			if ( is_array( $arr ) ) {
+			if ( !empty( $arr ) ) {
 				return $arr[0];
 			}
 		}

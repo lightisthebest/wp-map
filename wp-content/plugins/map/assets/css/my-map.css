@@ -1,0 +1,56 @@
+.my-map-test {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+}
+
+.my-map-close-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    position:relative;
+    bottom: 0.05rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.my-map-close-button:hover {
+    background-color: red
+}
+
+.my-map-close-button-text {
+    color: white;
+    position:relative;
+    bottom: .05rem;
+}
+
+.my-map-tab-text {
+    margin-left: .5rem;
+}
+
+.my-map-tab-text:hover {
+    color: blue;
+}
+
+.my-map-add-btn {
+    background-color: #56a368;
+    border-color: #56a368;
+}
+
+.my-map-add-btn:hover {
+    background-color: #00bf13;
+    border-color: #00bf13;
+}
+
+.my-map-remove-btn {
+    background-color: #cc505c;
+    border-color: #cc505c;
+}
+
+.my-map-remove-btn:hover {
+    background-color: #ff0018;
+    border-color: #ff0018;
+}

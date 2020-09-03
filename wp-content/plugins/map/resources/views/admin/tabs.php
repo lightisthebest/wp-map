@@ -1,6 +1,38 @@
 <h1>Налаштування вкладок</h1>
 <div id="map-tabs">
-    <div v-for="tab in tabs" style="margin-bottom: 25px">
+    <ul class="nav nav-tabs">
+        <li v-for="tab in tabs"
+            class="nav-item"
+        >
+            <div class="nav-link my-map-test"
+                 :class="{'active': tab.active}"
+            >
+                <div class="my-map-close-button"
+                     @click="removeTab(tab.id)"
+
+                >
+                    <span class="my-map-close-button-text">x</span>
+                </div>
+                <div class="my-map-tab-text"
+                     @click="makeActive(tab.id)"
+                >
+                    {{ tab.tabTitle }}
+                </div>
+            </div>
+        </li>
+        <li v-if="tabs.length < 5" style="display: flex; margin-bottom: 0;">
+            <button
+                    class="btn btn-success my-map-add-btn"
+                    style="padding: 0.3rem"
+                    @click="addNewTab"
+            >+
+            </button>
+        </li>
+    </ul>
+
+
+    <div v-for="tab in tabs" v-if="tab.active" style="margin-bottom: 25px">
+
         <table class="form-table" role="presentation">
             <tbody>
             <tr>
@@ -12,58 +44,67 @@
             </tbody>
         </table>
         <hr>
-        <table v-for="place in tab.places" class="form-table" role="presentation">
-            <tbody>
-            <tr>
-                <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'">Назва
-                        місця</label></th>
-                <td><input
-                            :name="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'"
-                            type="text"
-                            :id="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'"
-                            v-model="place.placeTitle"
-                            class="regular-text">
-                </td>
-            </tr>
+        <div v-for="place in tab.places">
+            <table class="form-table" role="presentation">
+                <tbody>
+                <tr>
+                    <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'">Назва
+                            місця</label></th>
+                    <td>
+                        <div>
+                            <input
+                                    :name="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'"
+                                    type="text"
+                                    :id="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'"
+                                    v-model="place.placeTitle"
+                                    class="regular-text">
+                            <button class="btn btn-danger my-map-remove-btn" @click="removePlace(tab.id, place.id)">Видалити</button>
+                        </div>
+                    </td>
+                </tr>
 
-            <tr>
-                <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][lat]'">Широта</label></th>
-                <td><input
-                            :name="'Tabs[' + tab.id + '][places][' + place.id + '][lat]'"
-                            type="text"
-                            :id="'Tabs[' + tab.id + '][places][' + place.id + '][lat]'"
-                            v-model="place.lat"
-                            class="regular-text">
-                </td>
-            </tr>
+                <tr>
+                    <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][lat]'">Широта</label>
+                    </th>
+                    <td><input
+                                :name="'Tabs[' + tab.id + '][places][' + place.id + '][lat]'"
+                                type="text"
+                                :id="'Tabs[' + tab.id + '][places][' + place.id + '][lat]'"
+                                v-model="place.lat"
+                                class="regular-text">
+                    </td>
+                </tr>
 
-            <tr>
-                <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][lng]'">Довгота</label></th>
-                <td><input
-                            :name="'Tabs[' + tab.id + '][places][' + place.id + '][lng]'"
-                            type="text"
-                            :id="'Tabs[' + tab.id + '][places][' + place.id + '][lng]'"
-                            v-model="place.lng"
-                            class="regular-text">
-                </td>
-            </tr>
+                <tr>
+                    <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][lng]'">Довгота</label>
+                    </th>
+                    <td><input
+                                :name="'Tabs[' + tab.id + '][places][' + place.id + '][lng]'"
+                                type="text"
+                                :id="'Tabs[' + tab.id + '][places][' + place.id + '][lng]'"
+                                v-model="place.lng"
+                                class="regular-text">
+                    </td>
+                </tr>
 
-            <tr>
-                <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'">Тест
-                        підпису</label></th>
-                <td><input
-                            :name="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
-                            type="text"
-                            :id="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
-                            v-model="place.contentString"
-                            class="regular-text">
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <hr>
+                <tr>
+                    <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'">Тест
+                            підпису</label></th>
+                    <td><input
+                                :name="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
+                                type="text"
+                                :id="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
+                                v-model="place.contentString"
+                                class="regular-text">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+        <button class="btn btn-success my-map-add-btn" @click="addPlace(tab.id)">Додати</button>
     </div>
     <p class="submit">
-        <input type="button" class="button-primary" @click="sendTabs" value="Зберегти зміни"/>
+        <input type="button" class="btn btn-success" @click="sendTabs" value="Зберегти зміни"/>
     </p>
 </div>

@@ -20,7 +20,7 @@
 
         <tr>
             <th scope="row"><label for="zoom">Zoom</label></th>
-            <td><input name="zoom" type="number" id="zoom" v-model="map.zoom" class="regular-text"></td>
+            <td><input name="zoom" type="number" min="0" max="18" id="zoom" v-model="map.zoom" class="regular-text"></td>
         </tr>
 
         <tr>
@@ -30,6 +30,6 @@
         </tbody>
     </table>
     <p class="submit">
-        <input type="button" class="button-primary" @click="sendMap" value="Зберегти зміни"/>
+        <input type="button" class="btn btn-success" @click="sendMap" value="Зберегти зміни"/>
     </p>
 </div>
