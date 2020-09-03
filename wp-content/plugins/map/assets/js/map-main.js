@@ -152,9 +152,83 @@
                 },
                 created() {
                     this.getTabs();
-
                 }
             });
+        } else {
+            let myMap = document.getElementById('my-map');
+            if (myMap) {
+                new Vue({
+                    el: '#my-map',
+                    data: {
+                        tabs: [{
+                            id: 1,
+                            tabTitle: '',
+                            places: [{
+                                id: 1,
+                                placeTitle: '',
+                                lat: 0,
+                                lng: 0,
+                                contentString: ''
+                            }]
+                        }],
+                        map: {
+                            key: '',
+                            lat: 0,
+                            lng: 0,
+                            zoom: 9,
+                            styles: '[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]}]'
+                        },
+                        url: '/?rest_route=/my-map/api/full-map',
+                        googleMap: null
+                    },
+                    methods: {
+                        makeActive(id) {
+                            this.tabs.forEach((item, index) => {
+                                this.$set(this.tabs[index], 'active', item.id === id)
+                            });
+                            this.createMap();
+                        },
+                        async getInfo() {
+                            try {
+                                let response = await axios.get(this.url);
+                                if (response.status === 200) {
+                                    this.tabs = typeof response.data === "string" ? JSON.parse(response.data) : response.data;
+                                    this.tabs = response.data.tabs;
+                                    this.map = response.data.map;
+                                    this.createMap();
+                                }
+                            } catch (error) {
+                            }
+                        },
+                        createMap() {
+                            this.googleMap = new google.maps.Map(document.getElementById('google-map'), {
+                                center: {lat: this.map.lat, lng: this.map.lng},
+                                zoom: this.map.zoom * 1
+                            });
+
+                            // new google.maps.Marker({
+                            //     position: {lat: this.map.lat, lng: this.map.lng},
+                            //     map: map,
+                            //     label: 'Testing label',
+                            //     title: 'Testing title',
+                            // })
+
+                            // map((location) => {
+                            //     // set Markers on Map
+                            //     return new google.maps.Marker({
+                            //         position: location,
+                            //         map: map,
+                            //         label: location.name_point,
+                            //         title: location.title  + ' ' + location.name_point,
+                            //     })
+                            // })
+                        }
+                    },
+                    created () {
+                        this.getInfo();
+                    }
+                });
+            }
         }
     }
 })();

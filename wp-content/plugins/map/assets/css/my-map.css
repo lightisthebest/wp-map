@@ -54,3 +54,12 @@
     background-color: #ff0018;
     border-color: #ff0018;
 }
+#google-map {
+    width: 100%;
+    height: 60rem
+}
+
+#my-map {
+    width: 100%;
+    margin: 0 5rem
+}

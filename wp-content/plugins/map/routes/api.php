@@ -18,6 +18,11 @@ Route::get('map', 'ApiController@getMapInfo');
 Route::get('tabs', 'ApiController@getTabs');
 
 /**
+ * @uses \App\Http\Controllers\ApiController::getFullMapInfo()
+ */
+Route::get('full-map', 'ApiController@getFullMapInfo');
+
+/**
  * @uses \App\Http\Controllers\ApiController::updateMapInfo()
  */
 Route::post('map', 'ApiController@updateMapInfo');

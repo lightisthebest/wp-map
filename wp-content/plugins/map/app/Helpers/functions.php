@@ -12,11 +12,18 @@ function view($view = '', $params = [])
     foreach ($path as $item) {
         $file .= "/$item";
     }
-    $file .= '.php';
-    if (file_exists($file)) {
 
-//        include $file;
-        return file_get_contents($file);
+    $file = Str::finish($file, '.php');
+    if (file_exists($file)) {
+        ob_start();
+        ob_implicit_flush(false);
+        extract($params, EXTR_OVERWRITE);
+        try {
+            require $file;
+            return ob_get_clean();
+        } catch (Throwable $e) {
+            return '';
+        }
     }
 
     return '';
@@ -55,7 +62,20 @@ function config($string)
     } else return null;
 }
 
-function app_path($path = '') {
+function app_path($path = '')
+{
     if (!empty($path)) $path = Str::start($path, '/');
-    return realpath($_SERVER["DOCUMENT_ROOT"]) .$path;
+    return realpath($_SERVER["DOCUMENT_ROOT"]) . $path;
+}
+
+function plugin_path($path = '')
+{
+    if (!empty($path)) $path = Str::start($path, '/');
+    return app_path('wp-content/plugins/map' . $path);
+}
+
+function views_path($path = '')
+{
+    if (!empty($path)) $path = Str::start($path, '/');
+    return plugin_path('resources/views' . $path);
 }

@@ -12,18 +12,30 @@ class ApiController
 {
     /**
      * @param WP_REST_Request $request
+     * @return mixed
      */
     public function getMapInfo(WP_REST_Request $request)
     {
-        include app_path(MAP_INFO_FILE);
+        return json_decode(file_get_contents(app_path(MAP_INFO_FILE)), true);
     }
 
     /**
      * @param WP_REST_Request $request
+     * @return mixed
      */
     public function getTabs(WP_REST_Request $request)
     {
-        include app_path(TABS_INFO_FILE);
+        return json_decode(file_get_contents(app_path(TABS_INFO_FILE)), true);
+    }
+
+    /**
+     * @return array
+     */
+    public function getFullMapInfo() {
+        return [
+            'map' => json_decode(file_get_contents(app_path(MAP_INFO_FILE)), true),
+            'tabs' => json_decode(file_get_contents(app_path(TABS_INFO_FILE)), true)
+        ];
     }
 
     /**
