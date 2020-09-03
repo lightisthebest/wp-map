@@ -13,10 +13,10 @@ function view($view = '', $params = [])
         $file .= "/$item";
     }
     $file .= '.php';
-
     if (file_exists($file)) {
-        return file_get_contents($file);
+
 //        include $file;
+        return file_get_contents($file);
     }
 
     return '';

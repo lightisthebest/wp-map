@@ -9,8 +9,8 @@ class Page {
 	public function __call($name, $args) {
 		$content = view($name);
 		if (empty($content)) {
-			return view("admin.$name");
+			$content = view("admin.$name");
 		}
-		return $content;
+		echo $content;
 	}
 }
