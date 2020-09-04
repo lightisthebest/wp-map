@@ -45,7 +45,7 @@
         </table>
         <hr>
         <div v-for="place in tab.places">
-            <table class="form-table" role="presentation">
+            <table class="form-table" role="presentation" style="max-width: 1000px">
                 <tbody>
                 <tr>
                     <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'">Назва
@@ -58,8 +58,20 @@
                                     :id="'Tabs[' + tab.id + '][places][' + place.id + '][placeTitle]'"
                                     v-model="place.placeTitle"
                                     class="regular-text">
-                            <button class="btn btn-danger my-map-remove-btn" @click="removePlace(tab.id, place.id)">Видалити</button>
+                            <button class="btn btn-danger my-map-remove-btn" @click="removePlace(tab.id, place.id)">
+                                Видалити
+                            </button>
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][category]'">Категорія</label>
+                    </th>
+                    <td>
+                        <select v-model="place.category" style="width: 25em;">
+                            <option value=""></option>
+                            <option v-for="cat in categories" :value="cat.id">{{ cat.title }}</option>
+                        </select>
                     </td>
                 </tr>
 
@@ -88,21 +100,16 @@
                 </tr>
 
                 <tr>
-                    <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'">Тест
+                    <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'">Текст
                             підпису</label></th>
-                    <td>
-                        <textarea :name="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
-                                  type="text"
-                                  :id="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
-                                  v-model="place.contentString"
-                        ></textarea>
-
-                        <input
-                                :name="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
-                                type="text"
-                                :id="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
-                                v-model="place.contentString"
-                                class="regular-text">
+                    <td class="ckeditor">
+                        <ckeditor
+                            :editor="editor"
+                            v-model="place.contentString"
+                            :config="editorConfig"
+                            :name="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
+                            :id="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
+                        ></ckeditor>
                     </td>
                 </tr>
                 </tbody>

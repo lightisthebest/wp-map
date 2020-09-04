@@ -1,5 +1,5 @@
 <div id="my-map">
-    <ul class="nav nav-tabs" style="width: 100%">
+    <ul class="nav nav-tabs">
         <li v-for="tab in tabs"
             class="nav-item"
         >

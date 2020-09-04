@@ -11,31 +11,42 @@ use WP_REST_Response;
 class ApiController
 {
     /**
-     * @param WP_REST_Request $request
+     * @return array
+     */
+    public function getFullMapInfo()
+    {
+        return [
+            'map' => json_decode(file_get_contents(app_path(MAP_INFO_FILE)), true),
+            'tabs' => json_decode(file_get_contents(app_path(TABS_INFO_FILE)), true),
+            'categories' => json_decode(file_get_contents(app_path(CATEGORIES_INFO_FILE)), true),
+        ];
+    }
+
+    /**
      * @return mixed
      */
-    public function getMapInfo(WP_REST_Request $request)
+    public function getMapInfo()
     {
         return json_decode(file_get_contents(app_path(MAP_INFO_FILE)), true);
     }
 
     /**
-     * @param WP_REST_Request $request
      * @return mixed
      */
-    public function getTabs(WP_REST_Request $request)
+    public function getTabs()
     {
-        return json_decode(file_get_contents(app_path(TABS_INFO_FILE)), true);
+        return [
+            'tabs' => json_decode(file_get_contents(app_path(TABS_INFO_FILE)), true) ?? [],
+            'categories' => json_decode(file_get_contents(app_path(CATEGORIES_INFO_FILE)), true),
+        ];
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function getFullMapInfo() {
-        return [
-            'map' => json_decode(file_get_contents(app_path(MAP_INFO_FILE)), true),
-            'tabs' => json_decode(file_get_contents(app_path(TABS_INFO_FILE)), true)
-        ];
+    public function getCategories()
+    {
+        return json_decode(file_get_contents(app_path(CATEGORIES_INFO_FILE)), true) ?? [];
     }
 
     /**
@@ -57,6 +68,18 @@ class ApiController
     public function updateTabsInfo(WP_REST_Request $request)
     {
         file_put_contents(app_path(TABS_INFO_FILE), json_encode($request->get_json_params()));
+        return response()->json([
+            'status' => 'ok'
+        ]);
+    }
+
+    /**
+     * @param WP_REST_Request $request
+     * @return WP_Error|WP_REST_Response
+     */
+    public function updateCategoriesInfo(WP_REST_Request $request)
+    {
+        file_put_contents(app_path(CATEGORIES_INFO_FILE), json_encode($request->get_json_params()));
         return response()->json([
             'status' => 'ok'
         ]);

@@ -22,6 +22,7 @@ if ( is_admin() ) {
 
 		$menu->addSubmenu('Карта', 'map-map', [ $mapPage, 'map' ])
 		->addSubmenu('Вкладки', 'map-tabs', [$mapPage, 'tabs'])
+            ->addSubmenu('Категорії', 'map-categories', [$mapPage, 'categories'])
 		->removeMainSubmenu();
 	} );
 }

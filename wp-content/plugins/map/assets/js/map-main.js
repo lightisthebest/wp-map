@@ -43,7 +43,17 @@
     if (tabDiv) {
         new Vue({
             el: '#map-tabs',
+            components: {
+                // Use the <ckeditor> component in this view.
+                ckeditor: CKEditor.component
+            },
             data: {
+                editor: ClassicEditor,
+                editorConfig: {
+                    toolbar: [
+                        "bold", "italic", "undo", "redo", "blockQuote", "heading",
+                        "indent", "outdent", "link", "numberedList", "bulletedList"]
+                },
                 counter: 0,
                 tabs: [{
                     id: 1,
@@ -51,11 +61,13 @@
                     places: [{
                         id: 1,
                         placeTitle: '',
+                        category: 0,
                         lat: 0,
                         lng: 0,
                         contentString: ''
                     }]
                 }],
+                categories: [],
                 tabsUrl: '/?rest_route=/my-map/api/tabs',
             },
             methods: {
@@ -63,7 +75,8 @@
                     try {
                         let response = await axios.get(this.tabsUrl);
                         if (response.status === 200) {
-                            this.tabs = typeof response.data === "string" ? JSON.parse(response.data) : response.data;
+                            this.tabs = typeof response.data.tabs === "string" ? JSON.parse(response.data.tabs) : response.data.tabs;
+                            this.categories = typeof response.data.categories.categories === "string" ? JSON.parse(response.data.categories.categories) : response.data.categories.categories;
                             let tabIndex = 1;
                             for (let i = 0; i < this.tabs.length; i++) {
                                 this.tabs[i].id = tabIndex++;
@@ -93,6 +106,7 @@
                         places: [{
                             id: 1,
                             placeTitle: '',
+                            category: 0,
                             lat: 0,
                             lng: 0,
                             contentString: ''
@@ -124,6 +138,7 @@
                                 places.push({
                                     id: places.length === 0 ? 1 : (places[places.length - 1].id + 1),
                                     placeTitle: '',
+                                    category: 0,
                                     lat: 0,
                                     lng: 0,
                                     contentString: ''
@@ -216,7 +231,7 @@
                         maxWidth: 400
                     });
 
-                    marker.addListener('click', function() {
+                    marker.addListener('click', function () {
                         infowindow.open(map, marker);
                     });
                 }
@@ -256,6 +271,66 @@
             }
         });
 
+    }
+
+
+    let catDiv = document.getElementById('map-categories');
+    if (catDiv) {
+        new Vue({
+            el: '#map-categories',
+            data: {
+                categories: [{
+                    id: 1,
+                    title: ''
+                }],
+                url: '/?rest_route=/my-map/api/categories',
+                lastId: 1
+            },
+            methods: {
+                async getInfo() {
+                    try {
+                        let response = await axios.get(this.url);
+                        if (response.status === 200 && (typeof response.data) === "object") {
+                            this.categories = response.data.categories || [];
+                            this.lastId = response.data.lastId || 0;
+                        }
+                    } catch (error) {
+                    }
+                },
+                async sendCategories() {
+                    try {
+                        let response = await axios.post(this.url, {
+                            categories: this.categories,
+                            lastId: this.lastId
+                        });
+                        if (response.status === 200) {
+                            location.reload();
+                        }
+                    } catch (error) {
+                    }
+                },
+                addCategory() {
+                    this.lastId++;
+                    let newCat = {
+                        id: this.lastId,
+                        title: ''
+                    };
+                    this.categories.push(newCat);
+                },
+                removeCategory(id) {
+                    if (this.categories.length) {
+                        let index = this.categories.findIndex(cat => cat.id === id);
+                        if (index !== -1) {
+                            this.categories.splice(index, 1);
+                        }
+                        index = -1;
+                    }
+                }
+            },
+            created() {
+                this.getInfo();
+            }
+        });
     }
 })
 ();

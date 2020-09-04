@@ -23,6 +23,11 @@ Route::get('tabs', 'ApiController@getTabs');
 Route::get('full-map', 'ApiController@getFullMapInfo');
 
 /**
+ * @uses \App\Http\Controllers\ApiController::getCategories()
+ */
+Route::get('categories', 'ApiController@getCategories');
+
+/**
  * @uses \App\Http\Controllers\ApiController::updateMapInfo()
  */
 Route::post('map', 'ApiController@updateMapInfo');
@@ -31,3 +36,8 @@ Route::post('map', 'ApiController@updateMapInfo');
  * @uses \App\Http\Controllers\ApiController::updateTabsInfo()
  */
 Route::post('/tabs', 'ApiController@updateTabsInfo');
+
+/**
+ * @uses \App\Http\Controllers\ApiController::updateCategoriesInfo()
+ */
+Route::post('categories', 'ApiController@updateCategoriesInfo');
