@@ -14,5 +14,9 @@
             </div>
         </li>
     </ul>
+    <select v-model="category" @change="getInfo" style="width: 25em;  margin-top: 2rem;">
+        <option value=""></option>
+        <option v-for="cat in categories" :value="cat.id">{{ cat.title }}</option>
+    </select>
     <div class="google-map" v-for="tab in tabs" v-show="tab.active" :id="'google-map-' + tab.id"></div>
 </div>

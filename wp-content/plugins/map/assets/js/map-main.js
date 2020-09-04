@@ -77,26 +77,30 @@
                         if (response.status === 200) {
                             this.tabs = typeof response.data.tabs === "string" ? JSON.parse(response.data.tabs) : response.data.tabs;
                             this.categories = typeof response.data.categories.categories === "string" ? JSON.parse(response.data.categories.categories) : response.data.categories.categories;
-                            let tabIndex = 1;
-                            for (let i = 0; i < this.tabs.length; i++) {
-                                this.tabs[i].id = tabIndex++;
-                                this.tabs[i].active = this.tabs[i].id === 1;
-                                if (this.tabs[i].places.length) {
-                                    let placeIndex = 1;
-                                    this.tabs[i].places.forEach(place => place.id = placeIndex++)
-                                }
-                            }
+                            this.clearIds();
                         }
                     } catch (error) {
                     }
                 },
                 async sendTabs() {
                     try {
+                        this.clearIds();
                         let response = await axios.post(this.tabsUrl, this.tabs);
                         if (response.status === 200) {
                             location.href = location.href;
                         }
                     } catch (error) {
+                    }
+                },
+                clearIds() {
+                    let tabIndex = 1;
+                    for (let i = 0; i < this.tabs.length; i++) {
+                        this.tabs[i].id = tabIndex++;
+                        this.tabs[i].active = this.tabs[i].id === 1;
+                        if (this.tabs[i].places.length) {
+                            let placeIndex = 1;
+                            this.tabs[i].places.forEach(place => place.id = placeIndex++)
+                        }
                     }
                 },
                 addNewTab() {
@@ -195,21 +199,31 @@
                     zoom: 9,
                     styles: '[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]}]'
                 },
+                categories: [],
+                category: '',
                 url: '/?rest_route=/my-map/api/full-map',
-                createNewMaps: true
+                createNewMaps: true,
+                tabId: 1
             },
             methods: {
                 makeActive(id) {
+                    this.tabId = id;
                     this.tabs.forEach((item, index) => {
                         this.$set(this.tabs[index], 'active', item.id === id)
                     });
                 },
                 getInfo() {
-                    let response = axios.get(this.url).then(response => {
+                    let url = this.url + '&category=' + this.category;
+                    let response = axios.get(url).then(response => {
                         if (response.status === 200) {
                             let ttt = typeof response.data === "string" ? JSON.parse(response.data.tabs) : response.data.tabs;
                             this.$set(this, 'tabs', ttt);
+                            this.makeActive(this.tabId);
+
                             this.map = response.data.map;
+                            this.categories = typeof response.data.categories.categories === "string" ? JSON.parse(response.data.categories.categories) : response.data.categories.categories;
+                            this.category = response.data.category;
+                            this.createNewMaps = true;
                         }
                     }).catch(error => {
                         console.log(error);
