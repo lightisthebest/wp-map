@@ -90,7 +90,14 @@
                 <tr>
                     <th scope="row"><label :for="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'">Тест
                             підпису</label></th>
-                    <td><input
+                    <td>
+                        <textarea :name="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
+                                  type="text"
+                                  :id="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
+                                  v-model="place.contentString"
+                        ></textarea>
+
+                        <input
                                 :name="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"
                                 type="text"
                                 :id="'Tabs[' + tab.id + '][places][' + place.id + '][contentString]'"

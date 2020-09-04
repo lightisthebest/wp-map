@@ -14,5 +14,5 @@
             </div>
         </li>
     </ul>
-    <div id="google-map"></div>
+    <div class="google-map" v-for="tab in tabs" v-show="tab.active" :id="'google-map-' + tab.id"></div>
 </div>
