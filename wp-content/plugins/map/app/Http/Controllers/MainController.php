@@ -13,15 +13,22 @@ class MainController
     public function init()
     {
         add_shortcode('map', [$this, 'createMap']);
-        add_option('markers');
     }
 
     /**
      *
+     * @param $args
      * @return string
      */
-    public function createMap()
+    public function createMap($args)
     {
-        return view('map_shortcode');
+        $params = shortcode_atts( array(
+            'width' => 100,
+        ), $args );
+
+        if ($params['width'] > 100 || $params['width'] < 1)  {
+            $params['width'] = 100;
+        }
+        return view('map_shortcode', $params);
     }
 }

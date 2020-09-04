@@ -1,4 +1,4 @@
-<div id="my-map">
+<div id="my-map" style="width: <?= $width ?? 100 ?>vw">
     <ul class="nav nav-tabs">
         <li v-for="tab in tabs"
             class="nav-item"
